@@ -2,10 +2,38 @@
 //
 
 #include <iostream>
+#include <Windows.h>
+
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	int varInt = 123456;
+	string varString("DefaultString");
+	char arrChar[128] = "Long char array right there ->";
+
+	int* ptr2int = &varInt;
+	int** ptr2ptr = &ptr2int;
+	int*** ptr2ptr2 = &ptr2ptr;
+
+	while (true)
+	{
+		cout << "Process ID: " << GetCurrentProcessId << endl;
+		cout << "\n";
+		cout << "varInt (0x" << &varInt << ") = " << varInt << endl;
+		cout << "varString (0x" << &varString << ") = " << varString << endl;
+		cout << "arrChar[128] (0x" << &arrChar << ") = " << arrChar << endl;
+		cout << "\n";
+		cout << "ptr2int (0x" << &ptr2int << ") = 0x" << ptr2int << endl;
+		cout << "ptr2ptr (0x" << &ptr2ptr << ") = 0x" << ptr2ptr << endl;
+		cout << "ptr2ptr2 (0x" << &ptr2ptr2 << ") = 0x" << ptr2ptr2 << endl;
+		cout << "\n";
+		cout << "Press ENTER to print again." << endl;
+		cout << "\n\n";
+		cout << "---------------------------------------------" << endl;
+
+		getchar();
+	};
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
