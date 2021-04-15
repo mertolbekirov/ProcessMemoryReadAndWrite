@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConsoleAppToMessWith", "ConsoleAppToMessWith\ConsoleAppToMessWith.vcxproj", "{40FA7F1F-878F-4459-A0EE-607DD978B42A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReaderAndWriterOfMemory", "ReaderAndWriterOfMemory\ReaderAndWriterOfMemory.vcxproj", "{31A0CE25-89D7-411D-8B07-B3F60CA0C04A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{40FA7F1F-878F-4459-A0EE-607DD978B42A}.Release|x64.Build.0 = Release|x64
 		{40FA7F1F-878F-4459-A0EE-607DD978B42A}.Release|x86.ActiveCfg = Release|Win32
 		{40FA7F1F-878F-4459-A0EE-607DD978B42A}.Release|x86.Build.0 = Release|Win32
+		{31A0CE25-89D7-411D-8B07-B3F60CA0C04A}.Debug|x64.ActiveCfg = Debug|x64
+		{31A0CE25-89D7-411D-8B07-B3F60CA0C04A}.Debug|x64.Build.0 = Debug|x64
+		{31A0CE25-89D7-411D-8B07-B3F60CA0C04A}.Debug|x86.ActiveCfg = Debug|Win32
+		{31A0CE25-89D7-411D-8B07-B3F60CA0C04A}.Debug|x86.Build.0 = Debug|Win32
+		{31A0CE25-89D7-411D-8B07-B3F60CA0C04A}.Release|x64.ActiveCfg = Release|x64
+		{31A0CE25-89D7-411D-8B07-B3F60CA0C04A}.Release|x64.Build.0 = Release|x64
+		{31A0CE25-89D7-411D-8B07-B3F60CA0C04A}.Release|x86.ActiveCfg = Release|Win32
+		{31A0CE25-89D7-411D-8B07-B3F60CA0C04A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
