@@ -8,7 +8,7 @@ using namespace std;
 
 int main()
 {
-	HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, DWORD("75693CA0"));
+	HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, DWORD("0x75303CA0"));
 	if (hProcess == NULL)
 	{
 		cout << "OpenProcess failed. GetLastError = " << dec << GetLastError() << endl;
