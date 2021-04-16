@@ -3,19 +3,32 @@
 
 #include <iostream>
 #include <Windows.h>
+#include <TlHelp32.h>
+#include <string>
+#include <tchar.h>
 
-using namespace std;
+DWORD GetConsoleProcessId() {
+	DWORD procId;
+	HWND hwnd = FindWindow(NULL, _T("ConsoleAppToMessWIth"));
+
+	GetWindowThreadProcessId(hwnd, &procId);
+	return procId;
+}
 
 int main()
 {
-	HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, DWORD("0x75303CA0"));
+	DWORD procId = GetConsoleProcessId();
+	HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, procId);
 	if (hProcess == NULL)
 	{
-		cout << "OpenProcess failed. GetLastError = " << dec << GetLastError() << endl;
+		std::cout << "OpenProcess failed. GetLastError = " << std::dec << GetLastError() << std::endl;
 		system("pause");
 		return EXIT_FAILURE;
 	}
 }
+
+
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu

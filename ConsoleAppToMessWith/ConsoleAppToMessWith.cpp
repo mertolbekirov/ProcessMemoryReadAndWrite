@@ -16,9 +16,11 @@ int main()
 	int** ptr2ptr = &ptr2int;
 	int*** ptr2ptr2 = &ptr2ptr;
 
+
+	DWORD processId = GetCurrentProcessId();
 	while (true)
 	{
-		std::cout << "Process ID: " << GetCurrentProcessId << std::endl;
+		std::cout << "Process ID: " << processId << std::endl;
 		std::cout << "\n";
 		std::cout << "varInt (0x" << &varInt << ") = " << varInt << std::endl;
 		std::cout << "varString (0x" << &varString << ") = " << varString << std::endl;
