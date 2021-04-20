@@ -6,25 +6,71 @@
 #include <TlHelp32.h>
 #include <string>
 #include <tchar.h>
+#include <Psapi.h>
+
+uintptr_t GetModuleBaseAddress(DWORD procId, const wchar_t* modName)
+{
+	uintptr_t modBaseAddr = 0;
+	HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, procId);
+	if (hSnap != INVALID_HANDLE_VALUE)
+	{
+		MODULEENTRY32 modEntry;
+		modEntry.dwSize = sizeof(modEntry);
+		if (Module32First(hSnap, &modEntry))
+		{
+			do
+			{
+				if (!_wcsicmp(modEntry.szModule, modName))
+				{
+					modBaseAddr = (uintptr_t)modEntry.modBaseAddr;
+					break;
+				}
+			} while (Module32Next(hSnap, &modEntry));
+		}
+	}
+	CloseHandle(hSnap);
+	return modBaseAddr;
+}
+
 
 DWORD GetConsoleProcessId() {
 	DWORD procId;
 	HWND hwnd = FindWindow(NULL, _T("ConsoleAppToMessWIth"));
-
 	GetWindowThreadProcessId(hwnd, &procId);
+	//CloseHandle(hwnd);
 	return procId;
 }
 
+
+
 int main()
 {
+	uintptr_t BaseAddress(NULL);
 	DWORD procId = GetConsoleProcessId();
 	HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, procId);
+
 	if (hProcess == NULL)
 	{
 		std::cout << "OpenProcess failed. GetLastError = " << std::dec << GetLastError() << std::endl;
 		system("pause");
 		return EXIT_FAILURE;
 	}
+	int intRead = 0;
+	SIZE_T bytesRead = 0;
+
+	BaseAddress = GetModuleBaseAddress(procId, _T("ConsoleAppToMessWith.exe"));
+	DWORD intReadAddress = BaseAddress + 0x5018;
+	std::cout << (LPCVOID)intReadAddress << std::endl;
+	BOOL rpmReturn = ReadProcessMemory(hProcess, (LPCVOID)intReadAddress, &intRead, sizeof(int), NULL);
+	if (rpmReturn == FALSE)
+	{
+		std::cout << "ReadProcessMemory failed. GetLastError = " << std::dec << GetLastError() << std::endl;
+		system("pause");
+		return EXIT_FAILURE;
+	}
+	std::cout << intRead << std::endl;
+
+	return 0;
 }
 
 

@@ -8,7 +8,7 @@ int main()
 {
 	
 	SetConsoleTitle(TEXT("ConsoleAppToMessWith"));
-	int varInt = 123456;
+	static int varInt = 123456;
 	std::string varString("DefaultString");
 	char arrChar[128] = "Long char array right there ->";
 
@@ -35,6 +35,7 @@ int main()
 		std::cout << "---------------------------------------------" << std::endl;
 
 		getchar();
+		varInt++;
 	};
 }
 
